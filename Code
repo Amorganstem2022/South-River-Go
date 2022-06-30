@@ -1,0 +1,178 @@
+from kivymd.app import MDApp
+from kivy.lang.builder import Builder
+from kivy.uix.screenmanager import Screen, ScreenManager
+
+screen_helper = """
+ScreenManager:
+   
+   MenuScreen:
+   InfoScreen:
+   ContactScreen:
+   CalendarScreen:
+   LunchScreen:
+   NestScreen1:
+   NestScreen2:
+# The v
+<MenuScreen>
+   name: 'menu'
+   MDRectangleFlatButton
+      text: 'For info on events and counseling follow us on twitter @CounselingSRHS'
+      pos_hint: {'center_x':0.5,'center_y':0.3}
+   Image:
+      source: 'xbanner.png'
+      size: self.texture_size
+      pos_hint: {'center_x':0.5,'center_y':0.9}
+   MDRectangleFlatButton
+      text: 'Info'
+      pos_hint: {'center_x':0.5,'center_y':0.5}
+      on_press: root.manager.current = 'info'
+   MDRectangleFlatButton
+      text: 'Contact'
+      pos_hint: {'center_x':0.5,'center_y':0.6}
+      on_press: root.manager.current = 'contact'
+   MDRectangleFlatButton
+      text: 'Calendar'
+      pos_hint: {'center_x':0.5,'center_y':0.7}
+      on_press: root.manager.current = 'calendar'
+   MDRectangleFlatButton
+      text: 'Lunch'
+      pos_hint: {'center_x':0.5,'center_y':0.4}
+      on_press: root.manager.current = 'lunch'
+<InfoScreen>
+   name: 'info'
+   MDRectangleFlatButton
+      text: 'Follow our FBLA group on instagram!!! @southriver.FBLA'
+      pos_hint: {'center_x':0.5,'center_y':0.04}
+   Image:
+      source: 'CFA.png'
+      size: self.texture_size
+      pos_hint: {'center_x':0.5,'center_y':0.9}
+   Image:
+      source: 'H4H.png'
+      size: self.texture_size
+      pos_hint: {'center_x':0.5,'center_y':0.7}
+   Image:
+      source: 'NHS.png'
+      size: self.texture_size
+      pos_hint: {'center_x':0.5,'center_y':0.5}
+   Image:
+      source: 'SFC.png'
+      size: self.texture_size
+      pos_hint: {'center_x':0.5,'center_y':0.3}
+   MDRectangleFlatButton
+      text: 'Back'
+      pos_hint: {'center_x':0.5,'center_y':0.1}
+      on_press: root.manager.current = 'menu'
+
+<ContactScreen>
+   name: 'contact'
+   Image:
+      source: 'xbanner.png'
+      size: self.texture_size
+      pos_hint: {'center_x':0.5,'center_y':0.9}
+   Image:
+      source: 'xContact.png'
+      pos_hint: {'center_x':0.5,'center_y':0.5}
+   MDRectangleFlatButton
+      text: 'Back'
+      pos_hint: {'center_x':0.7,'center_y':0.1}
+      on_press: root.manager.current = 'menu'
+
+<CalendarScreen>
+   name: 'calendar'
+   Image:
+      source: 'Calendar.png'
+      size: self.texture_size
+      pos_hint: {'center_x':0.5,'center_y':0.65}
+   MDRectangleFlatButton
+      text: 'Back'
+      pos_hint: {'center_x':0.5,'center_y':0.2}
+      on_press: root.manager.current = 'menu'
+   MDRectangleFlatButton
+      text: 'Blue Block'
+      pos_hint: {'center_x':0.2,'center_y':0.1}
+      on_press: root.manager.current = 'nest1'
+   MDRectangleFlatButton
+      text: 'Silver Block'
+      pos_hint: {'center_x':0.8,'center_y':0.1}
+      on_press: root.manager.current = 'nest2'
+<NestScreen1>
+   name: 'nest1'
+   Image:
+      source: 'Blue.jpg'
+      size: self.texture_size
+      pos_hint: {'center_x':0.5,'center_y':0.55}
+   MDRectangleFlatButton
+      text: 'Back'
+      pos_hint: {'center_x':0.5,'center_y':0.2}
+      on_press: root.manager.current = 'calendar'
+<NestScreen2>
+   name: 'nest2'
+   Image:
+      source: 'Silver.jpg'
+      size: self.texture_size
+      pos_hint: {'center_x':0.5,'center_y':0.5}
+   MDRectangleFlatButton
+      text: 'Back'
+      pos_hint: {'center_x':0.5,'center_y':0.2}
+      on_press: root.manager.current = 'calendar'
+<LunchScreen>
+   name: 'lunch'
+   Image:
+      source: 'xLunch.png'
+      size: self.texture_size
+      pos_hint: {'center_x':0.5,'center_y':0.5}
+
+   MDRectangleFlatButton
+      text: 'Back'
+      pos_hint: {'center_x':0.5,'center_y':0.1}
+      on_press: root.manager.current = 'menu'
+"""
+
+
+class MenuScreen(Screen):
+    pass
+
+
+class InfoScreen(Screen):
+    pass
+
+
+class ContactScreen(Screen):
+    pass
+
+
+class CalendarScreen(Screen):
+    pass
+
+
+class NestScreen1(Screen):
+    pass
+
+
+class NestScreen2(Screen):
+    pass
+
+
+class LunchScreen(Screen):
+    pass
+
+
+sm = ScreenManager()
+sm.add_widget(MenuScreen(name='menu'))
+sm.add_widget(InfoScreen(name='info'))
+sm.add_widget(ContactScreen(name='contact'))
+sm.add_widget(CalendarScreen(name='calendar'))
+sm.add_widget(NestScreen1(name='nest1'))
+sm.add_widget(NestScreen2(name='nest1'))
+sm.add_widget(LunchScreen(name='lunch'))
+
+
+class DemoApp(MDApp):
+
+    def build(self):
+        screen = Builder.load_string(screen_helper)
+        return screen
+
+
+DemoApp().run()
